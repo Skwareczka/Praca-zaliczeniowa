@@ -22,6 +22,8 @@ timer = pygame.time.Clock()
 snake_block = 10
 snake_speed = 10
 
+
+
 display_style = pygame.font.SysFont('arial', 30, 'bold')
 score_font = pygame.font.SysFont('arial', 45, 'bold')
 
@@ -31,7 +33,7 @@ def final_score(score):
 
 def make_snake(snake_block, list_snake):
     for x in list_snake:
-        pygame.draw.rect(add_caption, colour_3, [x[0], x[1], snake_block])
+        pygame.draw.rect(add_caption, colour_3, [x[0], x[1], snake_block, snake_block])
 
 def display_msg(msg,colour):
     mssg = display_style.render(msg, True, colour)
@@ -56,16 +58,16 @@ def game_start():
 
         while game_close == True:
             add_caption.fill(colour_6)
-            display_msg('Przegrałeś! Jeśli chcesz zagrać ponownie naciśnij C jeśli zakończyć Q', colour_4)
+            display_msg('Przegrałeś! Zagraj ponownie naciśnij S, koniec gry K', colour_4)
             final_score(snake_len-1)
             pygame.display.update()
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_q:
+                    if event.key == pygame.K_k:
                         game_over = True
                         game_close = False
-                    if event.key == pygame. K_c:
+                    if event.key == pygame. K_s:
                         game_start()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -101,7 +103,8 @@ def game_start():
             if x==snake_head:
                 game_close = True
 
-        make_snake(snake_block,list_snake):
+        make_snake(snake_block, list_snake)
+        final_score(snake_len-1)
 
 
         pygame.display.update()
